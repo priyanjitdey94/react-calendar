@@ -1,0 +1,8 @@
+.calendar-root {
+    font-family: Raleway, sans-serif;
+    display: inline-flex;
+    flex-direction: column;
+    line-height: 30px;
+    border: 1px solid #666666;
+    box-shadow: 2px 2px 2px #6A6666;
+}

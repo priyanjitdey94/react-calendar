@@ -1,0 +1,8 @@
+.calendar-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    line-height: 40px;
+    color: #6A6666
+}
