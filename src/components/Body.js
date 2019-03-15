@@ -29,6 +29,8 @@ class Body extends Component {
             date = new Date(curYear, curMonth, curDate),
             monthStart = new Date(curYear, curMonth, 1),
             dayStartIndex = monthStart.getDay(),
+            interactive = true,
+            selected = false,
             i,
             j,
             cellCount = 0,
@@ -42,17 +44,33 @@ class Body extends Component {
                 <Cell
                     key={cellCount}
                     innerHTML={(date < 10 ? '0' : '') + date} 
+                    interactive={false}
+                    selected={selected}
                 /> 
             );
         }
 
         for (i = 1; cellCount < TOTAL_DATE_CELLS; i++, cellCount++) {
-            date = (new Date(curYear, curMonth, i)).getDate();
-
+            date = new Date(curYear, curMonth, i);
+            if (date.getMonth() !== monthStart.getMonth()) {
+                interactive = false;
+            } else {
+                interactive = true
+                if (date.getDate() === curDate) {
+                    selected = true;
+                } else {
+                    selected = false;
+                }
+            };
+            
+            date = date.getDate();
+            
             dateCells.push(
                 <Cell
                     key={cellCount}
                     innerHTML={(date < 10 ? '0' : '') + date} 
+                    interactive={interactive}
+                    selected={selected}
                 /> 
             );
         }

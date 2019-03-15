@@ -1,4 +1,27 @@
 .calendar-cell {
     width: 40px;
     text-align: center;
+    line-height: 40px;
+}
+
+.enabled-cell {
+    color: #2a2b2c;
+    cursor: pointer;
+}
+
+.enabled-cell:hover {
+    background-color: #d1d2d3
+}
+
+.disabled-cell {
+    color: #d4d6d8;
+}
+
+.highlighted-cell {
+    background-color: #654BF8;
+    font-weight: bold;
+    color: white;
+}
+.highlighted-cell:hover {
+    background-color: #654BF8;
 }
