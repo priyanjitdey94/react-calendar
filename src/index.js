@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Calendar from './Calendar';
 import * as serviceWorker from './serviceWorker';
+import './index.css';
 
 ReactDOM.render(<Calendar />, document.getElementById('root'));
 

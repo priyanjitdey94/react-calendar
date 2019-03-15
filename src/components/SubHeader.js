@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import Cell from './Cell';
+import {days} from '../utils/constants';
 import './SubHeader.css';
 
-const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 class SubHeader extends Component {
     render () {
         let i,

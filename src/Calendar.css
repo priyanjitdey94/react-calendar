@@ -3,6 +3,6 @@
     display: inline-flex;
     flex-direction: column;
     line-height: 30px;
-    border: 1px solid #666666;
-    box-shadow: 2px 2px 2px #6A6666;
+    border: 1px solid #d1d2d3;
+    box-shadow: 3px 3px 2px #eaeaea;
 }
