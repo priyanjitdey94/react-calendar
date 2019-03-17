@@ -26,7 +26,10 @@ class Calendar extends Component {
 		this.state = {
 			dd,
 			mm,
-			yy
+			yy,
+			selectedDate: dd,
+			selectedMonth: mm,
+			selectedYear: yy
 		};
 	}
 
@@ -73,6 +76,7 @@ class Calendar extends Component {
 				<Header 
 					mm={mm}
 					yy={yy}
+					onMonthYearChange={this.onMonthYearChange}
 				/>
 				<SubHeader />
 				<Body
@@ -86,8 +90,33 @@ class Calendar extends Component {
 	}
 	
 	onDayChange = dd => {
+		let {mm, yy} = this.state;
 		this.setState({
-			dd: +dd
+			dd: +dd,
+			selectedDate: +dd,
+			selectedMonth: mm,
+			selectedYear: yy
+		});
+	}
+
+	onMonthYearChange = newDate => {
+		let {mm, yy, selectedYear, selectedMonth, selectedDate} = this.state,
+			newYY = +getFirstValue(newDate.yy, yy),
+			newMM = +getFirstValue(newDate.mm, mm),
+			date = new Date(newYY, newMM),
+			dd;
+
+		mm = date.getMonth();
+		yy = date.getFullYear();
+		if (selectedYear === yy && selectedMonth === mm) {
+			dd = selectedDate;
+		} else {
+			dd = undefined;
+		}
+		this.setState({
+			yy,
+			mm,
+			dd
 		});
 	}
 }
