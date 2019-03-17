@@ -4,19 +4,8 @@ import Cell from './Cell';
 import './Body.css'
 
 class Body extends Component {
-    constructor (props) {
-        super(props);
-
-        let {dd, mm, yy} = props;
-        this.state = {
-            dd,
-            mm,
-            yy
-        };
-    }
-
     generateDateRows () {
-        let {dd, mm, yy} = this.state,
+        let {dd, mm, yy, onDayChange} = this.props,
             date = new Date(yy, mm, dd),
             monthStart = new Date(yy, mm, 1),
             dayStartIndex = monthStart.getDay(),
@@ -37,6 +26,7 @@ class Body extends Component {
                     innerHTML={(date < 10 ? '0' : '') + date} 
                     interactive={false}
                     selected={selected}
+                    onClick={onDayChange}
                 /> 
             );
         }
@@ -46,7 +36,7 @@ class Body extends Component {
             if (date.getMonth() !== monthStart.getMonth()) {
                 interactive = false;
             } else {
-                interactive = true
+                interactive = true;
                 if (date.getDate() === dd) {
                     selected = true;
                 } else {
@@ -62,6 +52,7 @@ class Body extends Component {
                     innerHTML={(date < 10 ? '0' : '') + date} 
                     interactive={interactive}
                     selected={selected}
+                    onClick={onDayChange}
                 /> 
             );
         }

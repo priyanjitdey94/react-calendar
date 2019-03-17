@@ -13,7 +13,7 @@ class SubHeader extends Component {
             cellAr.push(
                 <Cell key={i}
                     innerHTML={days[i]}
-                    enabledCSS={'calendar-sub-header-cell'}
+                    disabledCSS={'calendar-sub-header-cell'}
                 />
             );
         }

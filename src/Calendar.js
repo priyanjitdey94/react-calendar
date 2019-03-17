@@ -20,7 +20,7 @@ class Calendar extends Component {
 			curDate = new Date();
 
 		dd = getFirstValue(dd, curDate.getDate());
-		mm = getFirstValue(mm, curDate.getMonth() - 1);
+		mm = getFirstValue(mm, curDate.getMonth());
 		yy = getFirstValue(yy, curDate.getFullYear());
 		
 		this.state = {
@@ -49,13 +49,13 @@ class Calendar extends Component {
 				return;
 			}
 			dd = +dateAr[0];
-			mm = +dateAr[1];
+			mm = dateAr[1] - 1;
 			yy = +dateAr[2];
 		} else if (dateAr.length === 2) {
 			if (+dateAr[0] < 1 || +dateAr[0] > 12) {
 				return;
 			}
-			mm = +dateAr[0];
+			mm = dateAr[0] - 1;
 			yy = +dateAr[1];
 		} else return;
 
@@ -66,7 +66,7 @@ class Calendar extends Component {
 		};
 	}
 
-	render() {
+	render () {
 		let {dd, mm, yy} = this.state;
 		return (
 			<div className="calendar-root">
@@ -79,10 +79,17 @@ class Calendar extends Component {
 					dd={dd}
 					mm={mm}
 					yy={yy}
+					onDayChange={this.onDayChange}
 				/>
 			</div>
 		);
-  	}
+	}
+	
+	onDayChange = dd => {
+		this.setState({
+			dd: +dd
+		});
+	}
 }
 
 export default Calendar;

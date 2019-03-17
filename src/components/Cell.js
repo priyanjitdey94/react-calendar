@@ -1,19 +1,10 @@
 import React, { Component } from 'react';
 import './Cell.css';
-import { getFirstValue } from '../utils/methods';
 
 class Cell extends Component {
-    constructor (props) {
-        super(props);
-
-        this.state = {
-            interactive: getFirstValue(props.interactive, true),
-            selected: getFirstValue(props.selected, false)
-        }
-    }
     render () {
-        let {innerHTML, highlightedCSS, enabledCSS, disabledCSS, uniqueCSS} = this.props,
-            {interactive, selected} = this.state,
+        let {innerHTML, highlightedCSS, enabledCSS, disabledCSS, uniqueCSS,
+                interactive, selected} = this.props,
             classNames = 'calendar-cell';
 
         if (!interactive) {
@@ -25,10 +16,18 @@ class Cell extends Component {
             }
         }
         return (
-            <div className={classNames}>
+            <div className={classNames} onClick={this.onClickHandler}>
                 {innerHTML}            
             </div>
         );
+    }
+
+    onClickHandler = () => {
+        let {onClick, innerHTML, interactive, selected} = this.props;
+
+        if (interactive && !selected && typeof onClick === 'function') {
+            onClick(innerHTML);
+        }
     }
 }
 

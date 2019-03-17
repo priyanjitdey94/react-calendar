@@ -3,6 +3,7 @@
     flex-direction: row;
     align-items: center;
     text-align: center;
+    cursor: default;
 }
 
 .calendar-sub-header-cell {
