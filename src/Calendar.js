@@ -16,15 +16,17 @@ class Calendar extends Component {
 	constructor (props) {
 		super(props);
 
-		let {selectedDate, isDaySelected} = this.getActiveDateRange(props) || {},
+		let {dd, mm, yy} = this.getActiveDateRange(props) || {},
 			curDate = new Date();
 
-		selectedDate = selectedDate || curDate.getDate() + '/' + (curDate.getMonth() + 1) + '/' + curDate.getFullYear();
-		isDaySelected = getFirstValue(isDaySelected, true);
+		dd = getFirstValue(dd, curDate.getDate());
+		mm = getFirstValue(mm, curDate.getMonth() - 1);
+		yy = getFirstValue(yy, curDate.getFullYear());
 		
 		this.state = {
-			selectedDate,
-			isDaySelected
+			dd,
+			mm,
+			yy
 		};
 	}
 
@@ -32,7 +34,9 @@ class Calendar extends Component {
 		let {selectedDate} = props,
 			dateAr,
 			date,
-			isDaySelected = true;
+			dd,
+			mm,
+			yy;
 
 		if (!selectedDate || typeof selectedDate !== 'string') {
 			return;
@@ -44,30 +48,37 @@ class Calendar extends Component {
 			if (isNaN(+date)) {
 				return;
 			}
+			dd = +dateAr[0];
+			mm = +dateAr[1];
+			yy = +dateAr[2];
 		} else if (dateAr.length === 2) {
 			if (+dateAr[0] < 1 || +dateAr[0] > 12) {
 				return;
 			}
-			isDaySelected = false;
+			mm = +dateAr[0];
+			yy = +dateAr[1];
 		} else return;
 
 		return {
-			selectedDate,
-			isDaySelected
+			dd,
+			mm,
+			yy
 		};
 	}
 
 	render() {
-		let {selectedDate, isDaySelected} = this.state,
-			dateAr = selectedDate.split('/');
+		let {dd, mm, yy} = this.state;
 		return (
 			<div className="calendar-root">
 				<Header 
-					selectedDate={isDaySelected ? (dateAr[1] + '/' + dateAr[2]) : (dateAr[0] + '/' + dateAr[1])}
+					mm={mm}
+					yy={yy}
 				/>
 				<SubHeader />
 				<Body
-					selectedDate={selectedDate}
+					dd={dd}
+					mm={mm}
+					yy={yy}
 				/>
 			</div>
 		);

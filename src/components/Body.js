@@ -7,32 +7,18 @@ class Body extends Component {
     constructor (props) {
         super(props);
 
-        let {selectedDate} = props,
-            curDate,
-            curMonth,
-            curYear;
-
-        selectedDate = selectedDate.split('/');
-        if (selectedDate.length === 3) {
-            curDate = +(selectedDate[0].trim());
-            curMonth = +(selectedDate[1].trim()) - 1;
-            curYear = +(selectedDate[2].trim());
-        } else {
-            curMonth = +(selectedDate[0].trim()) - 1;
-            curYear = +(selectedDate[1].trim());
-        }
-
+        let {dd, mm, yy} = props;
         this.state = {
-            curDate,
-            curMonth,
-            curYear
+            dd,
+            mm,
+            yy
         };
     }
 
     generateDateRows () {
-        let {curDate, curMonth, curYear} = this.state,
-            date = new Date(curYear, curMonth, curDate),
-            monthStart = new Date(curYear, curMonth, 1),
+        let {dd, mm, yy} = this.state,
+            date = new Date(yy, mm, dd),
+            monthStart = new Date(yy, mm, 1),
             dayStartIndex = monthStart.getDay(),
             interactive = true,
             selected = false,
@@ -43,7 +29,7 @@ class Body extends Component {
             dateRows = [];
 
         for (i = 0; i < dayStartIndex; i++, cellCount++) {
-            date = (new Date(curYear, curMonth, i - dayStartIndex + 1)).getDate();
+            date = (new Date(yy, mm, i - dayStartIndex + 1)).getDate();
 
             dateCells.push(
                 <Cell
@@ -56,12 +42,12 @@ class Body extends Component {
         }
 
         for (i = 1; cellCount < TOTAL_DATE_CELLS; i++, cellCount++) {
-            date = new Date(curYear, curMonth, i);
+            date = new Date(yy, mm, i);
             if (date.getMonth() !== monthStart.getMonth()) {
                 interactive = false;
             } else {
                 interactive = true
-                if (date.getDate() === curDate) {
+                if (date.getDate() === dd) {
                     selected = true;
                 } else {
                     selected = false;
