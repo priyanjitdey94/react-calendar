@@ -8,12 +8,14 @@ class Header extends Component {
             mm;
 
         selectedDate = selectedDate.split('/');
-        mm = +(selectedDate[1].trim()) - 1;
+        mm = +(selectedDate[0].trim()) - 1;
         return (
             <div className='calendar-header'>
+                <div className='calendar-nav calendar-nav-left'>‹‹</div>
                 <div className='calendar-nav calendar-nav-left'>‹</div>
-                <div className='calendar-header-title'>{months[mm]} {selectedDate[2].trim()}</div>
+                <div className='calendar-header-title'>{months[mm]} {selectedDate[1].trim()}</div>
                 <div className='calendar-nav calendar-nav-right'>›</div>
+                <div className='calendar-nav calendar-nav-right'>››</div>
             </div>
         );
     }

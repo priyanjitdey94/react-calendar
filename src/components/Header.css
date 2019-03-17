@@ -6,3 +6,12 @@
     line-height: 40px;
     color: #6A6666
 }
+
+.calendar-header-title {
+    width: 50%;
+    text-align: center;
+}
+
+.calendar-nav {
+    cursor: pointer;
+}

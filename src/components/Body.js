@@ -13,9 +13,14 @@ class Body extends Component {
             curYear;
 
         selectedDate = selectedDate.split('/');
-        curDate = +(selectedDate[0].trim());
-        curMonth = +(selectedDate[1].trim()) - 1;
-        curYear = +(selectedDate[2].trim());
+        if (selectedDate.length === 3) {
+            curDate = +(selectedDate[0].trim());
+            curMonth = +(selectedDate[1].trim()) - 1;
+            curYear = +(selectedDate[2].trim());
+        } else {
+            curMonth = +(selectedDate[0].trim()) - 1;
+            curYear = +(selectedDate[1].trim());
+        }
 
         this.state = {
             curDate,

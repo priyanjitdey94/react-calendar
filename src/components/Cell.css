@@ -10,7 +10,8 @@
 }
 
 .enabled-cell:hover {
-    background-color: #d1d2d3
+    background-color: #d1d2d3;
+    border-radius: 50%;
 }
 
 .disabled-cell {
@@ -21,6 +22,7 @@
     background-color: #654BF8;
     font-weight: bold;
     color: white;
+    border-radius: 50%;
 }
 .highlighted-cell:hover {
     background-color: #654BF8;
