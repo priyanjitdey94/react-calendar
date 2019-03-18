@@ -10,3 +10,8 @@
     padding-left: 10px;
     padding-right: 10px;
 }
+
+.separator {
+    height: 1px;
+    background-color: #e1e2e3;
+}

@@ -72,12 +72,13 @@ class Calendar extends Component {
 	render () {
 		let {dd, mm, yy} = this.state;
 		return (
-			<div className="calendar-root">
+			<div className='calendar-root'>
 				<Header 
 					mm={mm}
 					yy={yy}
 					onMonthYearChange={this.onMonthYearChange}
 				/>
+				<div className='separator'></div>
 				<SubHeader />
 				<Body
 					dd={dd}
